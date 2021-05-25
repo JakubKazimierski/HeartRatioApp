@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "921174270228",
+    "project_id": "heartratioapp",
+    "storage_bucket": "heartratioapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:921174270228:android:de7694324a150bead02201",
+        "android_client_info": {
+          "package_name": "com.example.heartratioapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "921174270228-353sjt0sr030srg3prn5vpn0fcoirc6b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBtKx81OSpsY3xo12-2l1O-HciUJEGcvTo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "921174270228-353sjt0sr030srg3prn5vpn0fcoirc6b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
