@@ -1,12 +1,16 @@
 package com.example.heartratioapp
 
+import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
+import com.example.heartratioapp.history_activity.HistoryActivity
+import com.example.heartratioapp.measure_activity.MeasureActivity
 import com.example.heartratioapp.model_classes.User
 import com.example.heartratioapp.welcome_activity.WelcomeActivity
 import com.google.firebase.auth.FirebaseAuth
@@ -22,18 +26,15 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
         val toolbar: Toolbar = findViewById(R.id.toolbar_main)
         setSupportActionBar(toolbar)
         supportActionBar!!.title = ""
-
 
         firebaseUser = FirebaseAuth.getInstance().currentUser
         refUsers =
             FirebaseDatabase.getInstance("https://heartratioapp-default-rtdb.europe-west1.firebasedatabase.app/").reference.child(
                 "Users"
             ).child(firebaseUser!!.uid)
-
 
         //display name and photo
         refUsers!!.addValueEventListener(object : ValueEventListener {
@@ -75,4 +76,17 @@ class MainActivity : AppCompatActivity() {
         return false
     }
 
+    // Method for starting new MeasureActivity
+    fun newMeasure(view: View) {
+        val intent = Intent(this, MeasureActivity::class.java)
+        intent.putExtra("user", firebaseUser)
+        startActivity(intent)
+    }
+
+    // Method for starting HistoryActivity
+    fun showHistory(view: View) {
+        val intent = Intent(this, HistoryActivity::class.java)
+        intent.putExtra("user", firebaseUser)
+        startActivity(intent)
+    }
 }
