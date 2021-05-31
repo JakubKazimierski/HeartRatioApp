@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">HeartRatioApp</string>
+    <string name="welcome">Welcome</string>
+    <string name="register">Register</string>
+    <string name="login">Login</string>
+    <string name="email">email</string>
+    <string name="password">password</string>
+    <string name="username">username</string>
+    <string name="new_rec">Record New Heartbeat</string>
+    <string name="watch_hist">Watch Your History</string>
+    <string name="diagnose">Diagnose Yourself</string>
+    <string name="rec_start">Start Recording</string>
+    <string name="bpm">BPM:</string>
 </resources>
