@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RegisterActivity">
-
+    tools:context=".welcome_activity.RegisterActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -17,14 +16,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?attr/colorPrimary"
-            app:popupTheme="@style/CardView.Dark">
-
-        </androidx.appcompat.widget.Toolbar>
-
-
+            app:popupTheme="@style/CardView.Dark" />
 
     </com.google.android.material.appbar.AppBarLayout>
-
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -39,52 +33,42 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
-            android:hint="username"
+            android:hint="@string/username"
             android:textColor="@android:color/black"
             android:textColorHint="@android:color/darker_gray"
-            >
+            android:importantForAutofill="no" />
 
-        </EditText>
 
         <EditText
             android:id="@+id/email_register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
-            android:hint="email"
+            android:hint="@string/email"
             android:textColor="@android:color/black"
             android:textColorHint="@android:color/darker_gray"
-            >
-
-        </EditText>
+            tools:ignore="TextFields"
+            android:importantForAutofill="no" />
 
         <EditText
             android:id="@+id/password_register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
-            android:hint="Password"
+            android:hint="@string/password"
             android:layout_marginTop="10dp"
             android:textColor="@android:color/black"
             android:textColorHint="@android:color/darker_gray"
-            >
-
-        </EditText>
+            android:importantForAutofill="no" />
 
         <Button
             android:id="@+id/register_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Register"
+            android:text="@string/register"
             android:layout_marginTop="25dp"
             android:textColor="@android:color/white"
-            android:textColorHint="@android:color/white"
-            >
-
-        </Button>
+            android:textColorHint="@android:color/white" />
 
     </LinearLayout>
-
-
-
 </RelativeLayout>
