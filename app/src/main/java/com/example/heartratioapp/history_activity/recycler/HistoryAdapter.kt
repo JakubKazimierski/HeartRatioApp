@@ -4,14 +4,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.example.heartratioapp.R
+import com.example.heartratioapp.model_classes.Pulse
 import java.time.format.DateTimeFormatter
 
 class HistoryAdapter(private val data: Array<HeartRatioEntry>) : RecyclerView.Adapter<HistoryAdapter.EntryHolder>() {
     class EntryHolder(view: View) : RecyclerView.ViewHolder(view) {
         val dateView : TextView = view.findViewById(R.id.dateView)
         val bpmView : TextView = view.findViewById(R.id.bpmView)
+        val background : ConstraintLayout = view.findViewById(R.id.itemBackground)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EntryHolder {
@@ -23,7 +26,8 @@ class HistoryAdapter(private val data: Array<HeartRatioEntry>) : RecyclerView.Ad
         val entry = data[position]
 
         holder.dateView.text = entry.date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"))
-        holder.bpmView.text = entry.bpm.toString()
+        holder.bpmView.text = entry.heartRate.bpm.toString()
+        holder.background.setBackgroundColor(entry.heartRate.evaluate().color)
     }
 
     override fun getItemCount(): Int {

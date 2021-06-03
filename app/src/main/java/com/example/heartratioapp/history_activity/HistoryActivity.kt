@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.heartratioapp.R
 import com.example.heartratioapp.history_activity.recycler.HeartRatioEntry
 import com.example.heartratioapp.history_activity.recycler.HistoryAdapter
+import com.example.heartratioapp.model_classes.Pulse
 import java.time.LocalDateTime
 
 class HistoryActivity : AppCompatActivity() {
@@ -25,10 +26,10 @@ class HistoryActivity : AppCompatActivity() {
 
     private fun simData() : Array<HeartRatioEntry>{
         return arrayOf(
-            HeartRatioEntry(LocalDateTime.of(2021, 5, 12, 10,43), 70f),
-            HeartRatioEntry(LocalDateTime.of(2021, 5, 14, 12,43), 90f),
-            HeartRatioEntry(LocalDateTime.of(2021, 5, 13, 11,5), 65f),
-            HeartRatioEntry(LocalDateTime.of(2021, 5, 15, 10,50), 74f)
+            HeartRatioEntry(LocalDateTime.of(2021, 5, 12, 10,43), Pulse(70)),
+            HeartRatioEntry(LocalDateTime.of(2021, 5, 14, 12,43), Pulse(90)),
+            HeartRatioEntry(LocalDateTime.of(2021, 5, 13, 11,5), Pulse(65)),
+            HeartRatioEntry(LocalDateTime.of(2021, 5, 15, 10,50), Pulse(74))
         )
     }
 }
