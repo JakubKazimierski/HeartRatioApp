@@ -12,6 +12,7 @@ import androidx.appcompat.widget.Toolbar
 import com.example.heartratioapp.history_activity.HistoryActivity
 import com.example.heartratioapp.measure_activity.MeasureActivity
 import com.example.heartratioapp.model_classes.User
+import com.example.heartratioapp.settings_activity.SettingsActivity
 import com.example.heartratioapp.welcome_activity.WelcomeActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -87,6 +88,12 @@ class MainActivity : AppCompatActivity() {
     fun showHistory(view: View) {
         val intent = Intent(this, HistoryActivity::class.java)
         intent.putExtra("user", firebaseUser)
+        startActivity(intent)
+    }
+
+    fun openSettings(view: View) {
+        val intent = Intent(this, SettingsActivity::class.java)
+        //intent.putExtra("user", firebaseUser)
         startActivity(intent)
     }
 }

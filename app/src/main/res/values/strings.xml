@@ -8,8 +8,10 @@
     <string name="username">username</string>
     <string name="new_rec">Record New Heartbeat</string>
     <string name="watch_hist">Watch Your History</string>
+    <string name="diagnose">Diagnose Yourself</string>
+    <string name="settings">Settings</string>
+    <string name="emergency_number">Emergency number</string>
+    <string name="notifications">Notifications</string>
     <string name="rec_start">Start Recording</string>
-    <string name="bpm">bpm</string>
-    <string name="analyse">Analyse your stats</string>
-    <string name="hr">Heart rate:</string>
+    <string name="bpm">BPM:</string>
 </resources>
