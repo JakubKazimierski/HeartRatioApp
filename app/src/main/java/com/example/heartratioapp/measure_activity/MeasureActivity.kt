@@ -1,24 +1,58 @@
 package com.example.heartratioapp.measure_activity
 
+import android.Manifest
+import android.content.Context
+import android.content.pm.PackageManager
+import android.media.MediaRecorder
 import android.os.Bundle
+import android.os.Environment
 import android.os.Handler
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import com.example.heartratioapp.R
 import com.example.heartratioapp.measure_activity.recorder.RecordThread
 import com.example.heartratioapp.measure_activity.recorder.RecorderSurface
 
+
 class MeasureActivity : AppCompatActivity() {
+
+    lateinit var record : MediaRecorder
+    lateinit var path : String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_measure)
 
+
+        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED)
+        {
+            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.RECORD_AUDIO, Manifest.permission.WRITE_EXTERNAL_STORAGE), 111)
+        }
+
+        record = MediaRecorder()
+
         findViewById<Button>(R.id.rec_start_btn).setOnClickListener {
             it.visibility = View.GONE
+
+
             startRec()
+        }
+
+
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == 111 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
+        {
+
         }
     }
 
@@ -30,8 +64,15 @@ class MeasureActivity : AppCompatActivity() {
 
     private fun startRec() {
         startAnim()
+        path = this.getExternalCacheDir().toString() + "/heartBeat.3gp"
 
-        //TODO: Replace with logic
+        record.setAudioSource(MediaRecorder.AudioSource.MIC)
+        record.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP)
+        record.setAudioEncoder(MediaRecorder.OutputFormat.AMR_NB)
+        record.setOutputFile(path)
+        record.prepare()
+        record.start()
+
         mockRecording()
     }
 
@@ -46,7 +87,7 @@ class MeasureActivity : AppCompatActivity() {
     private fun endRec() {
         stopAnim()
 
-        //TODO: Replace with logic
+        record.stop()
         findViewById<TextView>(R.id.debugFinish).visibility = View.VISIBLE
     }
 
@@ -62,3 +103,4 @@ class MeasureActivity : AppCompatActivity() {
         sur.visibility = View.GONE
     }
 }
+
