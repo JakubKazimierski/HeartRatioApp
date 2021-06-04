@@ -1,6 +1,5 @@
 package com.example.heartratioapp
 
-import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -12,6 +11,7 @@ import androidx.appcompat.widget.Toolbar
 import com.example.heartratioapp.history_activity.HistoryActivity
 import com.example.heartratioapp.measure_activity.MeasureActivity
 import com.example.heartratioapp.model_classes.User
+import com.example.heartratioapp.niotification.NotificationService
 import com.example.heartratioapp.settings_activity.SettingsActivity
 import com.example.heartratioapp.welcome_activity.WelcomeActivity
 import com.google.firebase.auth.FirebaseAuth
@@ -27,6 +27,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val serviceIntent = Intent(this, NotificationService::class.java)
+        startService(serviceIntent)
         val toolbar: Toolbar = findViewById(R.id.toolbar_main)
         setSupportActionBar(toolbar)
         supportActionBar!!.title = ""
