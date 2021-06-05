@@ -21,9 +21,9 @@ import com.example.heartratioapp.measure_activity.recorder.RecorderSurface
 class MeasureActivity : AppCompatActivity() {
 
     lateinit var record : MediaRecorder
-    lateinit var player : MediaPlayer
+
     lateinit var path : String
-    lateinit var mVisualizer : com.gauravk.audiovisualizer.visualizer.BarVisualizer
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -97,23 +97,6 @@ class MeasureActivity : AppCompatActivity() {
 
         record.stop()
 
-        mVisualizer = findViewById(R.id.bar);
-        player = MediaPlayer()
-        val suppressor = NoiseSuppressor.create(
-            player.audioSessionId)
-        val bassBoost = BassBoost(0,player.audioSessionId)
-        bassBoost.setStrength(1000)
-
-        player.setDataSource(path)
-        player.prepare()
-        player.start()
-
-
-
-        val audioSessionId: Int = player.getAudioSessionId()
-        if (audioSessionId != -1){
-            mVisualizer.setAudioSessionId(audioSessionId)
-        }
 
 
         findViewById<TextView>(R.id.debugFinish).visibility = View.VISIBLE
@@ -131,9 +114,6 @@ class MeasureActivity : AppCompatActivity() {
         sur.visibility = View.GONE
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        if (mVisualizer != null) mVisualizer.release()
-    }
+
 }
 
