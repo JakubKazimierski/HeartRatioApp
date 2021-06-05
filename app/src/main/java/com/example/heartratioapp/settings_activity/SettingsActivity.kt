@@ -19,7 +19,8 @@ class SettingsActivity : AppCompatActivity(){
         startActivity(intent)
     }
     fun setNotifications(view: View) {
-
+        val intent = Intent(this@SettingsActivity, NotificationsActivity::class.java)
+        startActivity(intent)
     }
 
 }

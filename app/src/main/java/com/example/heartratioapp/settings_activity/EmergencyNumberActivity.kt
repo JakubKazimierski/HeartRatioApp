@@ -19,5 +19,6 @@ class EmergencyNumberActivity : AppCompatActivity(){
     fun updateNumber(view: View) {
         emergencyNumber = editTextPhone.text.toString()
         textView3.text = getString(R.string.current_number, emergencyNumber)
+        Settings.emergencyNumber = emergencyNumber
     }
 }
