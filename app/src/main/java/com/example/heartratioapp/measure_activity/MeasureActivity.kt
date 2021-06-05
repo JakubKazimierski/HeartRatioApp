@@ -1,11 +1,11 @@
 package com.example.heartratioapp.measure_activity
 
 import android.Manifest
-import android.content.Context
 import android.content.pm.PackageManager
+import android.media.MediaPlayer
 import android.media.MediaRecorder
+import android.media.audiofx.NoiseSuppressor
 import android.os.Bundle
-import android.os.Environment
 import android.os.Handler
 import android.view.View
 import android.widget.Button
@@ -20,7 +20,9 @@ import com.example.heartratioapp.measure_activity.recorder.RecorderSurface
 class MeasureActivity : AppCompatActivity() {
 
     lateinit var record : MediaRecorder
+    lateinit var player : MediaPlayer
     lateinit var path : String
+    lateinit var mVisualizer : com.gauravk.audiovisualizer.visualizer.BarVisualizer
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,6 +66,8 @@ class MeasureActivity : AppCompatActivity() {
 
     private fun startRec() {
         startAnim()
+
+
         path = this.getExternalCacheDir().toString() + "/heartBeat.3gp"
 
         record.setAudioSource(MediaRecorder.AudioSource.MIC)
@@ -88,6 +92,25 @@ class MeasureActivity : AppCompatActivity() {
         stopAnim()
 
         record.stop()
+
+        mVisualizer = findViewById(R.id.bar);
+        player = MediaPlayer()
+        val suppressor = NoiseSuppressor.create(
+            player!!.audioSessionId)
+        //suppressor.setEnabled(true)
+
+        player.setDataSource(path)
+        player.prepare()
+        player.start()
+
+
+
+        val audioSessionId: Int = player.getAudioSessionId()
+        if (audioSessionId != -1){
+            mVisualizer.setAudioSessionId(audioSessionId)
+        }
+
+
         findViewById<TextView>(R.id.debugFinish).visibility = View.VISIBLE
     }
 
@@ -101,6 +124,11 @@ class MeasureActivity : AppCompatActivity() {
         val sur = findViewById<RecorderSurface>(R.id.recorderSurface)
         sur.recordThread.running = false
         sur.visibility = View.GONE
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        if (mVisualizer != null) mVisualizer.release()
     }
 }
 
