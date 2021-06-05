@@ -9,6 +9,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
+import com.example.heartratioapp.diagnose_activity.DiagnoseActivity
 import com.example.heartratioapp.history_activity.HistoryActivity
 import com.example.heartratioapp.measure_activity.MeasureActivity
 import com.example.heartratioapp.model_classes.User
@@ -99,6 +100,12 @@ class MainActivity : AppCompatActivity() {
 
     fun openSettings(view: View) {
         val intent = Intent(this@MainActivity, SettingsActivity::class.java)
+        intent.putExtra("user", firebaseUser)
+        startActivity(intent)
+    }
+
+    fun openDiagnose(view: View) {
+        val intent = Intent(this@MainActivity, DiagnoseActivity::class.java)
         intent.putExtra("user", firebaseUser)
         startActivity(intent)
     }

@@ -41,17 +41,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.gauravk.audiovisualizer.visualizer.BarVisualizer
-        android:id="@+id/bar"
-        android:layout_width="406dp"
-        android:layout_height="218dp"
-        app:avColor="@color/av_dark_blue"
-        app:avDensity="0.8"
-        app:avSpeed="normal"
-        app:avType="fill"
-        app:layout_constraintBottom_toTopOf="@+id/recorderSurface"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
