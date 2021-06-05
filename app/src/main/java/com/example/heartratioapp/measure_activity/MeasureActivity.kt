@@ -4,6 +4,7 @@ import android.Manifest
 import android.content.pm.PackageManager
 import android.media.MediaPlayer
 import android.media.MediaRecorder
+import android.media.audiofx.BassBoost
 import android.media.audiofx.NoiseSuppressor
 import android.os.Bundle
 import android.os.Handler
@@ -70,9 +71,12 @@ class MeasureActivity : AppCompatActivity() {
 
         path = this.getExternalCacheDir().toString() + "/heartBeat.3gp"
 
-        record.setAudioSource(MediaRecorder.AudioSource.MIC)
+        record.setAudioSource(MediaRecorder.AudioSource.VOICE_RECOGNITION)
         record.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP)
         record.setAudioEncoder(MediaRecorder.OutputFormat.AMR_NB)
+        record.setAudioEncodingBitRate(96000)
+        record.setAudioSamplingRate(44100)
+
         record.setOutputFile(path)
         record.prepare()
         record.start()
@@ -85,7 +89,7 @@ class MeasureActivity : AppCompatActivity() {
         val r = Runnable {
             endRec()
         }
-        handler.postDelayed(r, 3000)
+        handler.postDelayed(r, 10000)
     }
 
     private fun endRec() {
@@ -96,8 +100,9 @@ class MeasureActivity : AppCompatActivity() {
         mVisualizer = findViewById(R.id.bar);
         player = MediaPlayer()
         val suppressor = NoiseSuppressor.create(
-            player!!.audioSessionId)
-        //suppressor.setEnabled(true)
+            player.audioSessionId)
+        val bassBoost = BassBoost(0,player.audioSessionId)
+        bassBoost.setStrength(1000)
 
         player.setDataSource(path)
         player.prepare()
