@@ -1,5 +1,6 @@
 package com.example.heartratioapp
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -12,6 +13,7 @@ import com.example.heartratioapp.history_activity.HistoryActivity
 import com.example.heartratioapp.measure_activity.MeasureActivity
 import com.example.heartratioapp.model_classes.User
 import com.example.heartratioapp.niotification.NotificationService
+import com.example.heartratioapp.settings_activity.Settings
 import com.example.heartratioapp.settings_activity.SettingsActivity
 import com.example.heartratioapp.welcome_activity.WelcomeActivity
 import com.google.firebase.auth.FirebaseAuth
@@ -26,6 +28,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        Settings.loadSettings(getSharedPreferences("HeartRatioSettings", Context.MODE_PRIVATE))
 
         val serviceIntent = Intent(this, NotificationService::class.java)
         startService(serviceIntent)
@@ -97,5 +101,10 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this@MainActivity, SettingsActivity::class.java)
         intent.putExtra("user", firebaseUser)
         startActivity(intent)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Settings.saveSettings()
     }
 }
