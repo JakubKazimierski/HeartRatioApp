@@ -7,18 +7,14 @@ import com.example.heartratioapp.R
 import kotlinx.android.synthetic.main.activity_emergency_number.*
 
 class EmergencyNumberActivity : AppCompatActivity(){
-
-    private var emergencyNumber : String = "111"
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_emergency_number)
-        textView3.text = getString(R.string.current_number, emergencyNumber)
+        textView3.text = getString(R.string.current_number, Settings.emergencyNumber)
     }
 
     fun updateNumber(view: View) {
-        emergencyNumber = editTextPhone.text.toString()
-        textView3.text = getString(R.string.current_number, emergencyNumber)
-        Settings.emergencyNumber = emergencyNumber
+        Settings.emergencyNumber = editTextPhone.text.toString()
+        textView3.text = getString(R.string.current_number, Settings.emergencyNumber)
     }
 }

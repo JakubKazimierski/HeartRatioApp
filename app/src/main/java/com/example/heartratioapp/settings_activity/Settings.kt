@@ -9,7 +9,7 @@ class Settings {
         private var sharedPref : SharedPreferences? = null
         var notifyTime : LocalTime = LocalTime.of(23,9)
         var notifyOn : Boolean = true
-        var emergencyNumber : String = "+48 000 000 000"
+        var emergencyNumber : String = "111"
 
         fun saveSettings() {
             sharedPref!!.edit().apply {
