@@ -17,4 +17,9 @@ class EmergencyNumberActivity : AppCompatActivity(){
         Settings.emergencyNumber = editTextPhone.text.toString()
         textView3.text = getString(R.string.current_number, Settings.emergencyNumber)
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Settings.saveSettings()
+    }
 }

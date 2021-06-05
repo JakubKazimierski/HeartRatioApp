@@ -45,4 +45,9 @@ class NotificationsActivity : AppCompatActivity() {
             Settings.notifyTime = setTime
         }
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Settings.saveSettings()
+    }
 }
