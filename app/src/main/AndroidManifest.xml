@@ -30,6 +30,7 @@
         <activity android:name=".welcome_activity.LoginActivity" />
         <activity android:name=".welcome_activity.RegisterActivity" />
         <activity android:name=".settings_activity.SettingsActivity" />
+        <activity android:name=".settings_activity.EmergencyNumberActivity" />
         <activity android:name=".MainActivity" />
     </application>
 

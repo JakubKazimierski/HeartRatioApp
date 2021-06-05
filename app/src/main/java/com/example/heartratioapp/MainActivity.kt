@@ -95,7 +95,7 @@ class MainActivity : AppCompatActivity() {
 
     fun openSettings(view: View) {
         val intent = Intent(this@MainActivity, SettingsActivity::class.java)
-        //intent.putExtra("user", firebaseUser)
+        intent.putExtra("user", firebaseUser)
         startActivity(intent)
     }
 }
