@@ -14,7 +14,7 @@ import java.util.*
 
 class ChartActivity : AppCompatActivity() {
 
-    var lineChart: LineChart? = null
+    //var lineChart: LineChart? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,7 +23,7 @@ class ChartActivity : AppCompatActivity() {
         val intent = intent
         val audioBytes = intent.getFloatArrayExtra("floats")
 
-        lineChart = findViewById(R.id.linechart)
+        var lineChart = findViewById<com.github.mikephil.charting.charts.LineChart>(R.id.linechart)
 
         val lineDataSet = LineDataSet(lineChartDataSet(audioBytes), "data set")
         val iLineDataSets = ArrayList<ILineDataSet>()
@@ -31,14 +31,14 @@ class ChartActivity : AppCompatActivity() {
 
         val lineData = LineData(iLineDataSets)
 
-//        lineChart.setData(lineData)
-//
-//        lineDataSet.setDrawCircles(false)
-//        lineDataSet.color = Color.RED
-//
-//        val xAxis = lineChart.getXAxis()
-//        xAxis.axisMaximum = 30f
-//        lineChart.invalidate()
+        lineChart.setData(lineData)
+
+        lineDataSet.setDrawCircles(false)
+        lineDataSet.color = Color.RED
+
+        val xAxis = lineChart.getXAxis()
+        xAxis.axisMaximum = 30f
+        lineChart.invalidate()
     }
 
 
