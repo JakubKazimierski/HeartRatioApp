@@ -1,22 +1,27 @@
 package com.example.heartratioapp.history_activity
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.heartratioapp.R
 import com.example.heartratioapp.history_activity.recycler.HeartRatioEntry
 import com.example.heartratioapp.history_activity.recycler.HistoryAdapter
 import com.example.heartratioapp.model_classes.Pulse
+import java.io.File
+import java.io.InputStream
 import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 class HistoryActivity : AppCompatActivity() {
     private lateinit var recycler: RecyclerView
-    private val data: Array<HeartRatioEntry> = simData()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_history)
+
+        val data: ArrayList<HeartRatioEntry> = simData()
 
         recycler = findViewById(R.id.historyRecycler)
         recycler.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
@@ -24,12 +29,26 @@ class HistoryActivity : AppCompatActivity() {
         recycler.adapter = HistoryAdapter(data)
     }
 
-    private fun simData() : Array<HeartRatioEntry>{
-        return arrayOf(
-            HeartRatioEntry(LocalDateTime.of(2021, 5, 12, 10,43), Pulse(70)),
-            HeartRatioEntry(LocalDateTime.of(2021, 5, 14, 12,43), Pulse(90)),
-            HeartRatioEntry(LocalDateTime.of(2021, 5, 13, 11,5), Pulse(65)),
-            HeartRatioEntry(LocalDateTime.of(2021, 5, 15, 10,50), Pulse(74))
-        )
+    private fun simData() : ArrayList<HeartRatioEntry> {
+
+        var ratios = ArrayList<HeartRatioEntry>()
+
+
+        val filepath = this.getExternalCacheDir().toString() +"/bpm.txt"
+
+        val inputStream: InputStream = File(filepath).inputStream()
+        val lineList = mutableListOf<String>()
+
+        inputStream.bufferedReader().forEachLine { lineList.add(it) }
+        lineList.forEach {
+
+            val dateTime = LocalDateTime.parse(it.split("*")[1], DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"))
+            ratios.add(HeartRatioEntry(dateTime, Pulse(it.split("*")[0].toInt())))
+        }
+
+
+
+        return ratios
+
     }
 }

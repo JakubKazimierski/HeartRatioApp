@@ -104,11 +104,11 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    fun openDiagnose(view: View) {
-        val intent = Intent(this@MainActivity, DiagnoseActivity::class.java)
-        intent.putExtra("user", firebaseUser)
-        startActivity(intent)
-    }
+//    fun openDiagnose(view: View) {
+//        val intent = Intent(this@MainActivity, DiagnoseActivity::class.java)
+//        intent.putExtra("user", firebaseUser)
+//        startActivity(intent)
+//    }
 
     override fun onDestroy() {
         super.onDestroy()

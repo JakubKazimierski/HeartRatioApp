@@ -1,13 +1,13 @@
 package com.example.heartratioapp.measure_activity
 
 import android.Manifest
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.media.AudioFormat
 import android.media.AudioRecord
 import android.media.MediaRecorder
 import android.os.Bundle
-import android.os.Environment
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
@@ -23,12 +23,13 @@ import com.example.heartratioapp.R
 import com.example.heartratioapp.diagnose_activity.ChartActivity
 import com.example.heartratioapp.diagnose_activity.HistogramActivity
 import com.example.heartratioapp.diagnose_activity.StatsActivity
-import java.io.ByteArrayOutputStream
-import java.io.FileNotFoundException
-import java.io.FileOutputStream
-import java.io.IOException
+import java.io.*
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
+import java.nio.file.Files
+import java.nio.file.StandardOpenOption
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 class MeasureActivity : AppCompatActivity() {
@@ -322,6 +323,8 @@ class MeasureActivity : AppCompatActivity() {
         btnPlot!!.isEnabled = true
         btnHistogram!!.isEnabled = true
         btnStats!!.isEnabled = true
+
+        export(BPM.toInt().toString())
     }
 
     fun CountMaxInterval(table: List<Double>): Double {
@@ -458,6 +461,54 @@ class MeasureActivity : AppCompatActivity() {
         }
     }
 
+
+    fun export(data:String)
+    {
+
+        val filepath = this.getExternalCacheDir().toString() +"/bpm.txt"
+
+        val current = LocalDateTime.now()
+
+        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")
+
+        val formatted = current.format(formatter)
+
+
+        var file = File(filepath)
+        if(file.exists())
+        {
+
+            try {
+                val fw = FileWriter(filepath, true)
+                fw.write("\n"+data+"*"+formatted)
+                fw.close()
+            } catch (e: IOException) {
+            }
+
+            Toast.makeText(this, "Appended to file", 2.toInt()).show()
+
+        }
+        else
+        {
+
+            var fileNew = File(filepath)
+            try {
+                val fw = FileWriter(filepath, false)
+                fw.write(data+"*"+formatted)
+                fw.close()
+            } catch (e: IOException) {
+            }
+
+            Toast.makeText(this, "Saved to file", 2.toInt()).show()
+
+
+        }
+
+
+
+
+
+    }
 
 }
 

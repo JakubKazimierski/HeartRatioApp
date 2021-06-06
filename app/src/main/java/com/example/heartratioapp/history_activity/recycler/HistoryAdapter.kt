@@ -10,7 +10,7 @@ import com.example.heartratioapp.R
 import com.example.heartratioapp.model_classes.Pulse
 import java.time.format.DateTimeFormatter
 
-class HistoryAdapter(private val data: Array<HeartRatioEntry>) : RecyclerView.Adapter<HistoryAdapter.EntryHolder>() {
+class HistoryAdapter(private val data: ArrayList<HeartRatioEntry>) : RecyclerView.Adapter<HistoryAdapter.EntryHolder>() {
     class EntryHolder(view: View) : RecyclerView.ViewHolder(view) {
         val dateView : TextView = view.findViewById(R.id.dateView)
         val bpmView : TextView = view.findViewById(R.id.bpmView)
