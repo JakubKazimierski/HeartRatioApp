@@ -33,8 +33,7 @@ class HistogramActivity : AppCompatActivity() {
             val y = array[i]
             entries.add(BarEntry(x.toFloat(), y.toFloat()))
         }
-        val barDataSet =
-            BarDataSet(entries, "Liczba uderzeń w poszczególnych przedziałach")
+        val barDataSet = BarDataSet(entries, "Liczba uderzeń w poszczególnych przedziałach")
         val timestamps = ArrayList<String>()
         for (i in 0..89) {
             val builder = StringBuilder()
