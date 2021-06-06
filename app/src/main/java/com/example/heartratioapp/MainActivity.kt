@@ -2,6 +2,7 @@ package com.example.heartratioapp
 
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -113,5 +114,11 @@ class MainActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         Settings.saveSettings()
+    }
+
+    fun callEmergency(view: View) {
+        val dialIntent = Intent(Intent.ACTION_DIAL)
+        dialIntent.data = Uri.parse("tel:" + Settings.emergencyNumber)
+        startActivity(dialIntent)
     }
 }
