@@ -32,6 +32,10 @@
         <activity android:name=".settings_activity.SettingsActivity" />
         <activity android:name=".settings_activity.EmergencyNumberActivity" />
         <activity android:name=".settings_activity.NotificationsActivity" />
+        <activity android:name=".diagnose_activity.DiagnoseActivity" />
+        <activity android:name=".diagnose_activity.StatsActivity" />
+        <activity android:name=".diagnose_activity.HistogramActivity" />
+        <activity android:name=".diagnose_activity.ChartActivity" />
         <activity android:name=".MainActivity" />
     </application>
 

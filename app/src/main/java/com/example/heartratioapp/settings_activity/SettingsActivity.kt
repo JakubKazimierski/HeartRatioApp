@@ -11,7 +11,6 @@ class SettingsActivity : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
-
         }
 
     fun changeEmergencyNumber(view: View) {
@@ -22,5 +21,4 @@ class SettingsActivity : AppCompatActivity(){
         val intent = Intent(this@SettingsActivity, NotificationsActivity::class.java)
         startActivity(intent)
     }
-
 }

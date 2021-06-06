@@ -32,8 +32,8 @@ class NotificationService : Service() {
 
         thread {
             while (true) {
+                sleep(1000)
                 if (Settings.notifyOn and !notified) {
-//                    println(LocalTime.now())
                     if (LocalTime.now() == Settings.notifyTime) {
                         with(NotificationManagerCompat.from(this)) {
                             // notificationId is a unique int for each notification that you must define
@@ -42,7 +42,7 @@ class NotificationService : Service() {
                         notified = true
                     }
                 } else {
-                    sleep(61000)
+                    sleep(60000)
                     notified = false
                 }
             }
